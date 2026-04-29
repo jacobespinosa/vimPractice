@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#question-box {
+    border: 1px solid black;
+    width: 600px;
+    height: 200px;
+}
+
+#input-box {
+    border: 1px solid black;
+    width: 400px;
+    height: 100px;
+}
+
+#score-box {
+    border: 1px solid black;
+    width: 150px;
+    height: 75px;
+    margin-bottom: 100px;
+}
+
+#next-btn {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.question {
+    font-size: 1em;
+}
+
+.answer {
+    font-size: 1em;
+}
+
+.score {
+    font-size: 1em;
+}
+
+.missed {
+    font-size: 1em;
+}
+
+.streak {
+    font-size: 1em;
+}

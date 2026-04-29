@@ -1,0 +1,52 @@
+Check if question is template
+
+if so then the answer will have a '#' in it for a number to take its place
+OR a / or ? to indicate typing a pattern
+OR [a-z] or [A-Z] for marking
+OR (y)'[a-z] for jumping to a marked line
+
+Plan:
+
+    - '#' generate a random number 1-9 and change the question to ask for it ... (number) then the answer must change then change back
+    - '/' or '?' should pop up the text box maybe...
+    - [a-z] or [A-Z] should generate random number then convert to letter
+    - (y)'[a-z] should do the same
+
+
+Where should this logic be?
+When the question is generated!
+need to revert the question back to normal tho
+
+type:
+- "exact"
+- "count"
+- "search"
+- "mark"
+
+// Build pattern array for questions
+
+regex:
+  { prompt: "Move multiple times in a direction", answers: ["#h", "#j", "#k", "#l"], type: "count", category: "movement", 
+    correctRegex: /^\d+[hjkl]$/, pendingRegex: /^(\d*|\d+[hjkl]?)$/ },
+
+  { prompt: "Cut specified number of lines", answers: ["#dd", "d#d"], type: "count", category: "delete", 
+    correctRegex: /^(\d+dd|d\d+d)$/, pendingRegex: /^(\d*$|\d+d?$|d$|d\d+)$/ },
+
+  { prompt: "Copy specified number of lines", answers: ["#yy"], type: "count", category: "yank",
+    correctRegex: /^\d+yy$/, pendingRegex: /^(\d*|\d+y?)$/ },
+
+  { prompt: "Search forward for pattern", answers: ["/pattern"], type: "search", category: "search" }, // "Enter" to submit
+
+  { prompt: "Search backward for pattern", answers: ["?pattern"], type: "search", category: "search" }, // "Enter" to submit
+
+  { prompt: "Mark line", answers: ["m[a-z]"], type: "mark", category: "marks" },
+
+  { prompt: "Jump to mark", answers: ["'a"], type: "mark", category: "marks" },
+
+  { prompt: "Yank to mark", answers: ["y'a"], type: "mark", category: "marks" },
+
+  { prompt: "Mark line in another file", answers: ["M[A-Z]"], type: "mark", category: "marks" },
+
+  { prompt: "Move to specified line number", answers: [":#"], type: "count", category: "misc",
+    correctRegex: /^:\d+$/, pendingRegex: /^:\d*$/ } // "Enter" to submit
+  
