@@ -1,7 +1,7 @@
 // HTML ELEMENTS
 const questionBox = document.getElementById("question-box");
 const inputBox = document.getElementById("input-box");
-const scoreBox = document.getElementById("score-box");
+const score = document.getElementById("score");
 const nextBtn = document.getElementById("next-btn");
 
 // REGEX
@@ -139,7 +139,7 @@ function updateScore(isCorrect) {
         numOfMissed++;
         streak = 0;
     }
-    scoreBox.innerHTML = `
+    score.innerHTML = `
         <p class="score">Score: ${numOfCorrect}</p>
         <p class="streak">Streak: ${streak}<p>
         <p class="missed">Missed: ${numOfMissed}</p>
