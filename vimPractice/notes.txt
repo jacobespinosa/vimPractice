@@ -27,26 +27,38 @@ type:
 
 regex:
   { prompt: "Move multiple times in a direction", answers: ["#h", "#j", "#k", "#l"], type: "count", category: "movement", 
-    correctRegex: /^\d+[hjkl]$/, pendingRegex: /^(\d*|\d+[hjkl]?)$/ },
+    pendingRegex: /^(\d*|\d+[hjkl]?)$/ },
 
   { prompt: "Cut specified number of lines", answers: ["#dd", "d#d"], type: "count", category: "delete", 
-    correctRegex: /^(\d+dd|d\d+d)$/, pendingRegex: /^(\d*$|\d+d?$|d$|d\d+)$/ },
+    pendingRegex: /^(\d*$|\d+d?$|d$|d\d+)$/ },
 
   { prompt: "Copy specified number of lines", answers: ["#yy"], type: "count", category: "yank",
-    correctRegex: /^\d+yy$/, pendingRegex: /^(\d*|\d+y?)$/ },
+    pendingRegex: /^(\d*|\d+y?)$/ },
 
-  { prompt: "Search forward for pattern", answers: ["/pattern"], type: "search", category: "search" }, // "Enter" to submit
+  { prompt: "Search forward for pattern", answers: ["/pattern"], type: "search", category: "search",
+    pendingRegex: /^\/.*$/ },
 
-  { prompt: "Search backward for pattern", answers: ["?pattern"], type: "search", category: "search" }, // "Enter" to submit
+  { prompt: "Search backward for pattern", answers: ["?pattern"], type: "search", category: "search",
+    pendingRegex: /^\?.*$/ }, 
 
-  { prompt: "Mark line", answers: ["m[a-z]"], type: "mark", category: "marks" },
+  { prompt: "Mark line", answers: ["m[a-z]"], type: "mark", category: "marks",
+    pendingRegex: /^m[a-z]?$/ },
 
-  { prompt: "Jump to mark", answers: ["'a"], type: "mark", category: "marks" },
+  { prompt: "Jump to mark", answers: ["'[a-z]"], type: "mark", category: "marks",
+    pendingRegex: /^'[a-z]?$/ },
 
-  { prompt: "Yank to mark", answers: ["y'a"], type: "mark", category: "marks" },
+  { prompt: "Yank to mark", answers: ["y'[a-z]"], type: "mark", category: "marks",
+    pendingRegex: /^y'?([a-z])?$/ },
 
-  { prompt: "Mark line in another file", answers: ["M[A-Z]"], type: "mark", category: "marks" },
+  { prompt: "Mark line in another file", answers: ["M[A-Z]"], type: "mark", category: "marks",
+    pendingRegex: /^M[A-Z]?$/ },
 
   { prompt: "Move to specified line number", answers: [":#"], type: "count", category: "misc",
-    correctRegex: /^:\d+$/, pendingRegex: /^:\d*$/ } // "Enter" to submit
+    pendingRegex: /^:\d*$/ } // "Enter" to submit
+
+TODO: 
+  - mark type regexs
+  - getSearchState()
+  - getMarkState()
+  - Make input box only show on search types or when '/' is entered
   
