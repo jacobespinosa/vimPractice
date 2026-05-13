@@ -287,15 +287,18 @@ function handleEnter(event) {
 document.addEventListener("keydown", (e) => {
     e.preventDefault();
 
-    const isCommandMode = commandRegex.test(buffer);
-
     if (handleBackspace(e)) return;
     if (handleEnter(e)) return;
+
+    if (["Control", "Shift", "Alt", "Meta"].includes(e.key)) return;
+
     if (e.key.length > 1 && !e.ctrlKey) return;
 
     buffer += e.ctrlKey ? `Ctrl+${e.key}` : e.key;
 
     updateInputBox(buffer);
+
+    const isCommandMode = commandRegex.test(buffer);
     toggleCommandBox(isCommandMode);
 
     const state = checkAnswerState(currentQuestion, buffer);
